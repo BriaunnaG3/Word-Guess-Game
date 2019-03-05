@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Can you guess what the computer is thinking</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/Users/BriBri/Desktop/hmwrk/hw3/word-guess-game/Word-Guess-Game/assets/css/style.css">
+    <link src="/Users/BriBri/Desktop/hmwrk/hw3/word-guess-game/Word-Guess-Game/assets/javascript/game.js" style="textjavascript">
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Can you guess the number the Computer is thinking?!</h1>
+            <p class="lead">Click a number between 1-9 on your key-board to begin!</p>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p id="directions-text"></p>
+                <p id="userchoice-text"></p>
+                <p id="computerchoice-text"></p>
+                <p id="wins-text"></p>
+                <p id="losses-text"></p>
+                <p id="ties-text"></p>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+                <img src="/Users/BriBri/Desktop/hmwrk/hw3/word-guess-game/Word-Guess-Game/assets/images/giphy-downsized-medium.gif" alt="Guessing...">
+            </div>
+        </div>
+        </div>
+    </div>
+    
+        
+    </div>
+
+    <script type="text/javascript">
+
+        var computerChoices = ["6", "1", "9", "3", "4", "2"];
+        var wins = 0;
+        var losses = 0;
+        var ties = 0;
+        var directionsText = document.getElementById("directions-text");
+        var userChoiceText = document.getElementById("userchoice-text");
+        var computerChoiceText = document.getElementById("computerchoice-text");
+        var winsText = document.getElementById("wins-text");
+        var lossesText = document.getElementById("losses-text");
+        var tiesText = document.getElementById("ties-text");
+
+
+        document.onkeyup = function (event) {
+
+
+            var userGuess = event.key;
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            if ((userGuess === "6") || (userGuess === "1") || (userGuess === "9") || (userGuess === "3") || (userGuess === "4") || (userGuess === "2")) {
+
+                if ((userGuess === "6" && computerGuess === "6") ||
+                    (userGuess === "1" && computerGuess === "1") ||
+                    (userGuess === "9" && computerGuess === "9") ||
+                    (userGuess === "3" && computerGuess === "3") ||
+                    (userGuess === "4" && computerGuess === "4") ||
+                    (userGuess === "2" && computerGuess === "2")) {
+                    wins++;
+                } else if (userGuess === computerGuess) {
+                    ties++;
+                } else {
+                    losses++;
+                }
+            };
+            if ((userGuess === "5") || (userGuess === "7") || (userGuess === "8")) {
+
+                if ((userGuess === "5" && computerGuess === "6") ||
+                    (userGuess === "7" && computerGuess === "1") ||
+                    (userGuess === "8" && computerGuess === "9")) {
+                    losses++;
+                }
+            };
+
+            directionsText.textContent = "";
+            userChoiceText.textContent = "You chose: " + userGuess;
+            computerChoiceText.textContent = "The computer chose: " + computerGuess;
+            winsText.textContent = "wins: " + wins;
+            lossesText.textContent = "losses: " + losses;
+            tiesText.textContent = "ties: " + ties;
+
+        };
+    </script>
+
+</body>
+
+</html>
